@@ -41,7 +41,7 @@ class AuthController extends Controller
             ], 400);
         }
 
-        if(Auth::attempt($validator->validated())){
+        if(Auth::attempt(['email' => $validator['email'], 'password' => $validator['password']])){
             $user = Auth::user();
             $token = $user->createToken('LaravelPassportToken')->accessToken;
 
